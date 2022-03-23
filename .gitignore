@@ -126,3 +126,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 calc-imc/
+training-me/
+teste-git/
+tailwind-css/
+styled-componentes/
+requisicao-async-await/
+json-placeholder-test/
+life-cicle/
+package-lock.json
+package.json
