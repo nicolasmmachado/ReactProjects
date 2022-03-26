@@ -1,44 +1,54 @@
-import React, {useReducer} from 'react';
+import React, { useState, useReducer } from 'react';
 import './App.css';
-
-type reducerState = {
-  count: number
-}
-
-type reducerAction = {
-  type: string
-}
-
-const initialState = { count: 0 };
-
-const reducer = (state: reducerState, action: reducerAction) => {
-  switch(action.type){
-    case "ADD":
-      return {...state, count: state.count + 1}
-    break;
-    case "DEL":
-      if(state.count > 0){
-        return {...state, count: state.count - 1}
-      }
-    break;
-    case "RESET": 
-      return initialState
-    break;
-  }
-  return state;
-}
+//import { useContagem } from "./hooks/contagem"   usado no primeiro teste
+import { PersonList } from "./hooks/person"
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  //primeiro teste com reducer
+  /*const [count, countDispatch] = useContagem();
 
   return (
     <div>
-      <p>{state.count}</p>
-      <button onClick={() => { dispatch({type: "ADD"})}}>Adicionar</button>
-      <button onClick={() => { dispatch({type: "DEL"})}}>Deletar</button>
-      <button onClick={() => { dispatch({type: "RESET"})}}>Resetar</button>
+      <p>{count.count}</p>
+      <button onClick={() => { countDispatch({type: "ADD"})}}>Adicionar</button>
+      <button onClick={() => { countDispatch({type: "DEL"})}}>Deletar</button>
+      <button onClick={() => { countDispatch({type: "RESET"})}}>Resetar</button>
     </div>
-  );
+  );*/
+
+  const [id, setID] = useState("");
+  const [name, setName] = useState("");
+  const [person, personDispatch] = PersonList();
+
+  const handleNameClick = () => {
+    if (name !== "") {
+      personDispatch({ type: "add", payload: { name } })
+      setName("");
+    }
+  }
+
+  const handleIDClick = () => {
+    if (id !== "") {
+      personDispatch({ type: "remove", payload: { id } })
+      setID("");
+    }
+  }
+
+  return (
+    <div>
+      <ul>
+        {person.map((item, index) => (
+          <li key={index}>Nome: {item.name} ID: {item.id}</li>
+        ))
+        }
+      </ul>
+      <input type="text" onChange={e => setName(e.target.value)} value={name} />
+      <button onClick={handleNameClick}>Adicionar</button>
+      <input type="text" onChange={e => setID(e.target.value)} value={id} />
+      <button onClick={handleIDClick}>Remover</button>
+      <button onClick={() => { personDispatch({ type: "organize" }) }}>Ordem Alfabética</button>
+    </div>
+  )
 }
 
 export default App;
