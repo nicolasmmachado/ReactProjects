@@ -6,6 +6,7 @@ import { About } from "./pages/About";
 import { AboutBonieky } from "./pages/AboutBonieky";
 import { AboutPedro } from "./pages/AboutPedro";
 import { Error404 } from './pages/Error404';
+import { AboutItem } from "./pages/AboutItem"
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <h1>Bem vindo ao nosso site</h1>
       </header>
 
-      <section>
+      {/*<section>    Seção normal, sem rotas dinamicas
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/about" element={<About />}/>
@@ -22,7 +23,15 @@ function App() {
           <Route path="/about/pedro" element={<AboutPedro />}/>
           <Route path="*" element={<Error404 />}/>
         </Routes>
-      </section>
+      </section>*/}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/about/:slug" element={<AboutItem />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+
 
       <footer>
         <p>Todos os direitos reservados.</p>
