@@ -1,13 +1,14 @@
-import React from 'react';
+import {MainRoutes} from "./routes/MainRoutes";
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+/*import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { AboutBonieky } from "./pages/AboutBonieky";
 import { AboutPedro } from "./pages/AboutPedro";
 import { Error404 } from './pages/Error404';
-import { AboutItem } from "./pages/AboutItem"
-
+import { AboutItem } from "./pages/AboutItem";
+import { Authenticator } from "./Authenticator";
+*/
 function App() {
   return (
     <div>
@@ -25,13 +26,16 @@ function App() {
         </Routes>
       </section>*/}
 
-      <Routes>
+      {/*<Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Authenticator>
+          <About />
+        </Authenticator>} />
         <Route path="/about/:slug" element={<AboutItem />} />
         <Route path="*" element={<Error404 />} />
-      </Routes>
+        </Routes>*/}
 
+      <MainRoutes />
 
       <footer>
         <p>Todos os direitos reservados.</p>
